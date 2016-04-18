@@ -11,7 +11,7 @@ class uuid_serialize(json.JSONEncoder):
           return str(obj)
             # Let the base class default method raise the TypeError
         return json.JSONEncoder.default(self, obj)
-		
+        
 
 class CreditCardResource(AbstractResource):
 
@@ -44,17 +44,17 @@ class CreditCardResource(AbstractResource):
     def post_create_creditcard(self, creditcard_data_request):
         creditcard_request_header = {"MerchantKey": str(self.merchant_key), 'Content-Type': 'application/json', 'Accept': 'application/json'}
         return requests.post(self.host_uri + self.resource_name, data=json.dumps(creditcard_data_request, cls=uuid_serialize), headers = creditcard_request_header)
-		
+        
     def patch_creditcard(self, buyer_key, instant_buy_key):
         creditcard_request_header = {"MerchantKey": str(self.merchant_key), 'Content-Type': 'application/json', 'Accept': 'application/json'}
         action_name = '/' + str(instant_buy_key)
         json_buyer_key = {'BuyerKey':str(buyer_key)}
         return requests.patch(self.host_uri + self.resource_name + action_name, data = json.dumps(json_buyer_key, cls=uuid_serialize), headers = creditcard_request_header)
-		
-	
+        
+    
     def delete_creditcard(self, instant_buy_key):
-	
-	action_name = '/' + str(instant_buy_key)
+    
+    action_name = '/' + str(instant_buy_key)
         request_headers = {"merchantKey": str(self.merchant_key), 'Content-Type': 'application/json', 'Accept': 'application/json'}
         
         return requests.delete(self.host_uri + self.resource_name + action_name, headers=request_headers)

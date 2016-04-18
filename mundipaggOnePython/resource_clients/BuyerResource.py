@@ -11,7 +11,7 @@ class uuid_serialize(json.JSONEncoder):
           return str(obj)
             # Let the base class default method raise the TypeError
         return json.JSONEncoder.default(self, obj)
-		
+        
 
 class BuyerResource(AbstractResource):
 
