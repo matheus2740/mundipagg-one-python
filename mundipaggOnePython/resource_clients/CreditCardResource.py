@@ -1,7 +1,7 @@
 import requests
 from data_contracts import create_creditcard_request
 import json
-from AbstractResource import AbstractResource
+from .AbstractResource import AbstractResource
 from uuid import UUID
 
 
